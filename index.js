@@ -231,37 +231,171 @@ console.log(reverseArray(["A", "B", "C"]));
 
 
 // Declare una función llamada capitalizeArray. Toma un array como parámetro y retorna el array - capitalizedarray.
+function capitalizeArray(arr) {
+    let capitalizedarray = [];
+    for(let i = 0; i < arr.length; i++) {
+        arr[i] = arr[i].toUpperCase();
+        capitalizedarray.push(arr[i]);
+    }
+    return capitalizedarray;
+}
+
+console.log(capitalizeArray(["hola", "javascript"]));
 
 
 // Declare una función llamada addItem. Toma un elemento de paŕametro y retorna un array después de agregar el un elemento.
+function addItem(elemento) {
+    let arr = [];
+    return arr.push(elemento);
+}
+console.log("flamenco");
 
 // Declare una función llamada removeItem. Toma como parámetro un index y retorna un array después de eleminar el elemento con ese index.
+function removeItem(index) {
+    let arr = ["ejemplo", "ejemplo2", "ejemplo3"];
+    arr.splice(index, 1);
+    return arr;
+}
+console.log(removeItem(2));
 
 // Declare una función llamada sumOfNumbers. Toma un número como parámetro y suma todos los números en ese rango.
+function sumOfNumbers(num) {
+    let sum = 0;
+    for(let i = 0; i <= num; i++) {
+        sum += i;
+    }
+    return sum;
+}
+console.log(sumOfNumbers(10));
 
 // Declare una función llamada sumOfOdds. Toma un parámetro numérico y suma todos los números impares en ese rango.
+function sumOfOdds(num) {
+    let sum = 0;
+    for(let i = 0; i <= num; i++) {
+        if(i % 2 === 1) {
+        sum += i;
+    }
+    
+    }
+    return sum;
+}
+console.log(sumOfOdds(10));
 
 // Declare una función llamada sumOfEven. Toma un parámetro numérico y suma todos los números pares en ese rango.
+function sumOfEven(num) {
+    let sum = 0;
+    for(let i = 0; i <= num; i++) {
+        if(i % 2 === 0) {
+        sum += i;
+    }
+
+    }
+    return sum;
+}
+console.log(sumOfEven(10));
 
 // Declare una función llamada evensAndOdds . Toma un entero positivo como parámetro y cuenta el número de pares e impares.
-
 // evensAndOdds(100);
 // El número de impares son 50.
 // El número de pares es 51.
+function evensAndOdds(num) {
+    let even = 0;
+    let odd = 0;
+    if(num > 0) {
+        for(let i = 0; i <= num; i++) {
+            if(i % 2 === 1) {
+                odd += 1;
+            } else {
+                even += 1;
+            }
+        }
+    }
+    return `En el rango de números del 0 al ${num}, hay ${even} números pares y ${odd} impares`;
+}
+console.log(evensAndOdds(100));
+
+
 // Escriba una función que tome cualquier número de argumentos y retorne la suma de los argumentos
 // sum(1, 2, 3); // -> 6
 // sum(1, 2, 3, 4); // -> 10
+function sum(...args) {
+    let sum = 0;
+    for(let i = 0; i < args.length; i++) {
+        sum += args[i];
+    }
+    return sum;
+}
+console.log(sum(8, 9, 10));
+
 // Escriba una función randomUserIp que genere una ip de usuario aleatoria.
+const anonIp = () => {
+    let pattern = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz0123456789';
+    let id = '';
+    for(let i = 0; i <= 10; i++) {
+        id += pattern.charAt(Math.floor(Math.random()* pattern.length));
+    }
+    return id;
+}
+console.log(anonIp());
+
 // Escriba una función randomMacAddress que genere una dirección mac aleatoria.
+const randomMacAddress = () => {
+    let id1 = '';
+    let id2 = '';
+    let id3 = '';
+    let id4 = '';
+    let id5 = '';
+    let pattern = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz0123456789';
+    let id = '';
+    for(let i = 0; i < 2; i++) {
+        id1 += pattern.charAt(Math.floor(Math.random()* pattern.length));
+    }
+    for(let i = 0; i < 2; i++) {
+        id2 += pattern.charAt(Math.floor(Math.random()* pattern.length));
+    }
+    for(let i = 0; i < 2; i++) {
+        id3 += pattern.charAt(Math.floor(Math.random()* pattern.length));
+    }
+    for(let i = 0; i < 2; i++) {
+        id4 += pattern.charAt(Math.floor(Math.random()* pattern.length));
+    }
+    for(let i = 0; i < 2; i++) {
+        id5 += pattern.charAt(Math.floor(Math.random()* pattern.length));
+    }
+    return `00:${id1}:${id2}:${id3}:${id4}:${id5}`;
+}
+console.log(randomMacAddress());
+
 // Declare una función llamada randomHexaNumberGenerator. Cuando se llama a esta función, genera un número hexadecimal aleatorio. La función retorna el número hexadecimal.
 // console.log(randomHexaNumberGenerator());
 // '#ee33df'
+function randomHexaNumberGenerator() {
+    let hexRand = '';
+    let patternHex = 'abcdef0123456789';
+    let limitHex = Math.floor(Math.random() * 6);
+    for (let i = 0; i <= limitHex; i++) {
+        hexRand += patternHex.charAt(Math.floor(Math.random() * patternHex.length));
+    }
+    return `#${hexRand}`;
+}
+console.log(randomHexaNumberGenerator());
+
 // Declare una función llamada userIdGenerator. Cuando se llama a esta función, genera un id de siete caracteres. La función devuelve el id.
 // console.log(userIdGenerator());
 // 41XTDbE
-// Ejercicios: Nivel 3
-// Modifique la función userIdGenerator. Declare una función de nombre userIdGeneratedByUser. No toma ningún parámetro pero toma dos entradas usando prompt(). Una de las entradas es la cantidad de caracteres y la segunda entrada es la cantidad de ID que se supone que se generarán.
+function userIdGenerator() {
+    let pattern = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz0123456789';
+    let id = '';
+    for(let i = 0; i <= 7; i++) {
+        id += pattern.charAt(Math.floor(Math.random() * pattern.length));
+    }
+    return id;
+}
+console.log(userIdGenerator());
 
+// Ejercicios: Nivel 3
+
+// Modifique la función userIdGenerator. Declare una función de nombre userIdGeneratedByUser. No toma ningún parámetro pero toma dos entradas usando prompt(). Una de las entradas es la cantidad de caracteres y la segunda entrada es la cantidad de ID que se supone que se generarán.
 // userIdGeneratedByUser()
 // 'kcsy2
 // SMFYb
@@ -276,11 +410,51 @@ console.log(reverseArray(["A", "B", "C"]));
 // UbGxOFI7UXSWAyKN
 // dIV0SSUTgAdKwStr
 // '
-// Escriba una función llamada rgbColorGenerator que genera colores rgb
+function userIdGeneratedByUser() {
+    let pattern = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz0123456789';
+    let arrId = [];
+    let cuantity = prompt('Introduce la cantidad de caracteres: ');
+    let cuantityId = prompt('Introduce cuántas Id quieres: ');
+    for(let i = 0; i < cuantityId; i++) {
+        let id= '';
+        for(let j = 0; j < cuantity; j++) {
+            id += pattern.charAt(Math.floor(Math.random() * pattern.length));
+        }
+        arrId.push(id);
+    }
 
+    return arrId.join('\n');
+
+}
+
+// console.log(userIdGeneratedByUser());
+
+// Escriba una función llamada rgbColorGenerator que genera colores rgb
 // rgbColorGenerator()
 // rgb(125,244,255)
+function rgbColorGenerator() {
+    let colorRGB = [];
+    for(let i = 0; i < 3; i++) {
+        colorRGB.push(Math.floor(Math.random() * 255));
+    }
+
+    return `rgb(${colorRGB[0]},${colorRGB[1]},${colorRGB[2]})`;
+}
+console.log(rgbColorGenerator());
+
 // Escriba una función arrayOfHexaColors que retorna cualquier cantidad de colores hexadecimales en un array.
+function arrayOfHexaColors(numColors) {
+    let colors = [];
+    for (let i = 0; i < numColors; i++) {
+      var color = "#";
+      for (let j = 0; j < 6; j++) {
+        color += Math.floor(Math.random() * 16).toString(16);
+      }
+      colors.push(color);
+    }
+    return colors;
+}
+console.log(arrayOfHexaColors(5));
 
 // Escriba una función arrayOfRgbColors que retorna cualquier cantidad de colores RGB en un array.
 
