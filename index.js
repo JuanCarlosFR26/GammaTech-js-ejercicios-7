@@ -275,7 +275,7 @@ function sumOfOdds(num) {
         if(i % 2 === 1) {
         sum += i;
     }
-    
+
     }
     return sum;
 }
@@ -446,7 +446,7 @@ console.log(rgbColorGenerator());
 function arrayOfHexaColors(numColors) {
     let colors = [];
     for (let i = 0; i < numColors; i++) {
-      var color = "#";
+      let color = "#";
       for (let j = 0; j < 6; j++) {
         color += Math.floor(Math.random() * 16).toString(16);
       }
@@ -457,41 +457,226 @@ function arrayOfHexaColors(numColors) {
 console.log(arrayOfHexaColors(5));
 
 // Escriba una función arrayOfRgbColors que retorna cualquier cantidad de colores RGB en un array.
+function arrayOfRgbColors(num) {
+    let colors = [];
+    for(let i = 0; i < num; i++) {
+        let color = "rgb";
+        for(let j = 0; j < 1; j++) {
+            color = color + '(' + Math.floor(Math.random() * 255) + ', ' + Math.floor(Math.random() * 255) + ', ' + Math.floor(Math.random() * 255) + ')';
+        }
+        colors.push(color);
+    }
+    return colors;
+}
+
+console.log(arrayOfRgbColors(4));
 
 // Escriba una función convertHexaToRgb que convierta el color hexa a rgb y retorna un color rgb.
+function convertHexaToRgb(hex) {
+    let pattern = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return pattern ? {
+        r: parseInt(pattern[1], 16),
+        g: parseInt(pattern[2], 16),
+        b: parseInt(pattern[3], 16)
+    } : null;
+}
+console.log(convertHexaToRgb('#efe234'));
+
 
 // Escriba una función convertRgbToHexa que convierta rgb a color hexa y retorna un color hexa.
+function elementToConvert(hex) {
+    let color = hex.toString(16);
+    return color.length === 1 ? "0" + color : color;
+}
+
+function convertRgbToHexa(r, g, b) {
+    return "#" + elementToConvert(r) + elementToConvert(g) + elementToConvert(b);
+}
+
+console.log(convertRgbToHexa(20, 55, 223));
 
 // Escriba una función generateColors que pueda generar cualquier número de colores hexa o rgb.
-
 // console.log(generateColors("hexa", 3)); // ['#a3e12f', '#03ed55', '#eb3d2b']
 // console.log(generateColors("hexa", 1)); // '#b334ef'
 // console.log(generateColors("rgb", 3)); // ['rgb(5, 55, 175)', 'rgb(50, 105, 100)', 'rgb(15, 26, 80)']
 // console.log(generateColors("rgb", 1)); // 'rgb(33,79, 176)'
+// function generateColors() {
+//     let selection = prompt('Introduce hexa si quieres un color hexadecimal. Introduce rgb si quieres un color rgb: ');
+//     let cuantity = prompt('Introduce el número de colores que quieres generar: ');
+//     if(selection === 'hexa') {
+//         let = arrHex = [];
+//         for (let i = 0; i < cuantity; i++) {
+//             let color = "#";
+//             for (let j = 0; j < 6; j++) {
+//               color += Math.floor(Math.random() * 16).toString(16);
+//             }
+//             arrHex.push(color);
+//           }
+//           return (arrHex.length > 1) ? arrHex : arrHex[0];
+//     } else if(selection === 'rgb') {
+//         let arrRgb = [];
+//         for(let i = 0; i < cuantity; i++) {
+//             let color = "rgb";
+//             for(let j = 0; j < 1; j++) {
+//                 color = color + '(' + Math.floor(Math.random() * 255) + ', ' + Math.floor(Math.random() * 255) + ', ' + Math.floor(Math.random() * 255) + ')';
+//             }
+//             arrRgb.push(color);
+//         }
+//         return (arrRgb.length > 1) ? arrRgb : arrRgb[0];
+//     }
+// }
+// console.log(generateColors());
+
+
 // Llame a su función shuffleArray, toma un array como parámetro y devuelve un array mezclada
+function shuffleArray(arr) {
+    for(let i = arr.length - 1; i > 0; i--) {
+        let random = Math.floor(Math.random() * (i + 1));
+        let temp = arr[i];
+        arr[i] = arr[random];
+        arr[random] = temp;
+    }
+
+    return arr;
+}
+console.log(shuffleArray(['hola', 'mundo', 'cebolla', 'mango']))
 
 // Llame a su función factorial, toma un número entero como parámetro y devuelve un factorial del número.
+function factorial(num) {
+    let factorial = 1;
+    for(let i = 1; i <= num; i++) {
+        factorial *= i;
+    }
+
+    return factorial;
+}
+console.log(factorial(5));
 
 // Llame a su función isEmpty, toma un parámetro y verifica si está vacío o no.
+function isEmpty(param) {
+    if(param.length === 0) {
+        return 'El parámetro está vacío';
+    } else {
+        return param;
+    }
+}
+console.log(isEmpty(''));
 
 // Llame a su función sum, toma cualquier cantidad de argumentos y devuelve la suma.
+function suma(...args) {
+    let sum = 0;
+    for(let i = 0; i < args.length; i++) {
+        sum += args[i];
+    }
+    return sum;
+}
+console.log(suma(5, 8, 2))
 
 // Escriba una función llamada sumOfArrayItems, toma un array como parámetro y retorna la suma de todos los elementos. Compruebe si todos los elementos de la matriz son tipos de números. Si no, dé una respuesta razonable.
+function sumOfArrayItems(arr) {
+    let sum = 0;
+    for(let i= 0; i < arr.length; i++) {
+        if(typeof arr[i] === 'string') {
+            return 'No es posible sumar el array porque contiene cadenas de texto.'
+        } else if(typeof arr[i] === 'number') {
+            sum += arr[i];
+        }
+    }
+    return sum;
+
+}
+console.log(sumOfArrayItems([2, 9, 6]))
 
 // Escribe una función llamada average, toma un array como parámetro y retorna el promedio de los elementos. Compruebe si todos los elementos de la matriz son tipos de números. Si no, dé una respuesta adecuada.
+function average(arr) {
+    let sum = 0;
+    for(let i= 0; i < arr.length; i++) {
+        if(typeof arr[i] === 'string') {
+            return 'No es posible sumar el array porque contiene cadenas de texto.'
+        } else if(typeof arr[i] === 'number') {
+            sum += arr[i];
+        }
+    }
+    return Math.round(sum / arr.length);
+}
+console.log(average([16, 15, 15,100, 627]));
 
 // Escriba una función llamada modifyArray que tome un array como parámetro y modifique el quinto elemento del array y retorna el array. Si la longitud del array es inferior a cinco, retorna 'elemento no encontrado'.
-
 // console.log(modifyArray(['Avocado', 'Tomato', 'Potato','Mango', 'Lemon','Carrot']);
 // ['Avocado', 'Tomato', 'Potato','Mango', 'LEMON', 'Carrot']
 // console.log(modifyArray(['Google', 'Facebook','Apple', 'Amazon','Microsoft',  'IBM']);
 // ['Google', 'Facebook','Apple', 'Amazon','MICROSOFT',  'IBM']
 // console.log(modifyArray(['Google', 'Facebook','Apple', 'Amazon']);
 //   'Not Found'
+function modifyArray(arr) {
+    if(arr.length >= 5) {
+        for(let i = 0; i < arr.length; i++) {
+            if(i === 4) {
+                arr[i] = arr[i].toUpperCase();
+            }
+        }
+        return arr;
+    } else {
+        return 'Not found';
+    }
+}
+console.log(modifyArray(['Avocado', 'Tomato', 'Potato','Mango', 'Lemon','Carrot']));
+console.log(modifyArray(['Google', 'Facebook','Apple', 'Amazon','Microsoft',  'IBM']));
+console.log(modifyArray(['Google', 'Facebook','Apple', 'Amazon']));
+
 // Escribe una función llamada isPrime, que verifica si un número es un número primo.
+function isPrime(numero) {
+    if (numero == 0 || numero == 1 || numero == 4) return `${numero} no es primo`;
+	for (let i = 2; i < numero / 2; i++) {
+		if (numero % i == 0) return `${numero} no es primo`;
+	}
+	return `${numero} es primo`;
+}
+console.log(isPrime(4));
+
 // Escriba una función que verifique si todos los elementos son únicos en un array.
+function unique(arr) {
+    for(let i = 0; i < arr.length; i++) {
+        for(let j = i + 1; j < arr.length; j++) {
+            if(arr[i] === arr[j]) {
+                return 'Hay elementos repetidos';
+            }
+        }
+    }
+    return 'Todos los elementos son únicos';
+}
+console.log(unique([8, 9, 13, 12, 1, 'string', 'string']));
+
 // Escriba una función que verifique si todos los elementos de un array son del mismo tipo de datos.
+function uniqueData(arr) {
+    for(let i = 0; i < arr.length; i++) {
+        for(let j = i + 1; j < arr.length; j++) {
+            if(typeof arr[i] === typeof arr[j]) {
+                return 'Hay tipos de datos repetidos';
+            }
+        }
+    }
+    return 'Todos los tipos de datos son únicos';
+}
+console.log(uniqueData([1, 'string', true, false]));
+
 // El nombre de las variables de JavaScript no admite caracteres o símbolos especiales, excepto $ o _. Escriba una función isValidVariable que verifique si una variable es válida o inválida.
+function isValidVariable(variable) {
+    let pattern = /^[$a-zA-Z_][$a-zA-Z0-9_]*$/;
+    return pattern.test(variable);
+}
+console.log(isValidVariable('$'));
+console.log(isValidVariable('*4lor'));
+
+
 // Escriba una función que devuelva un array de siete números aleatorios en un rango de 0-9. Todos los números deben ser únicos.
 // sevenRandomNumbers()[(1, 4, 5, 7, 9, 8, 0)];
+function sevenRandomNumbers() {
+    const uniqueNumbers = [];
+    while(uniqueNumbers < 7) {
+        const randomNumber = Math.floor(Math.random() * 9);
+        if(!uniqueNumbers.includes(randomNumber) || !unique)
+    }
+}
+console.log(sevenRandomNumbers());
 // Escriba una función llamada reverseCountries, toma el array de países y primero copia el array y retorna el array original invertido
