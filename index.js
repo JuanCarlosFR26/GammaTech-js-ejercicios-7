@@ -1,3 +1,4 @@
+import { allCountries } from "./countries.js";
 
 // 💻 Ejercicios
 // Ejercicios: Nivel 1
@@ -673,10 +674,20 @@ console.log(isValidVariable('*4lor'));
 // sevenRandomNumbers()[(1, 4, 5, 7, 9, 8, 0)];
 function sevenRandomNumbers() {
     const uniqueNumbers = [];
-    while(uniqueNumbers < 7) {
-        const randomNumber = Math.floor(Math.random() * 9);
-        if(!uniqueNumbers.includes(randomNumber) || !unique)
+    while(uniqueNumbers.length < 7) {
+        const randomNumber = Math.floor(Math.random() * 10);
+        if(!uniqueNumbers.includes(randomNumber)) {
+            uniqueNumbers.push(randomNumber);
+        }
     }
+    return uniqueNumbers;
 }
 console.log(sevenRandomNumbers());
+
 // Escriba una función llamada reverseCountries, toma el array de países y primero copia el array y retorna el array original invertido
+function reverseCountries() {
+    let copyCountries = [].concat(allCountries);
+    return copyCountries.reverse();
+}
+
+console.log(reverseCountries());
